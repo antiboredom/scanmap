@@ -1,5 +1,6 @@
 import config
 import requests
+import re
 
 
 def search_places_google(query, conf):
@@ -62,9 +63,11 @@ def search_places(query, conf):
 
     results = data["features"]
 
+    results = [r for r in results if conf["SEARCH"]["FILTER"] in r["place_name"]]
+
     results = [
         {
-            "name": r["text"],
+            "name": re.sub(r" [0-9]{5}, .*$", "", r["place_name"]),
             "coordinates": [
                 r["geometry"]["coordinates"][1],
                 r["geometry"]["coordinates"][0],

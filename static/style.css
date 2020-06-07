@@ -138,7 +138,8 @@ a, a:visited {
 #coord-results {
   color: #000;
   font-size: 0.8em;
-  height: 9em;
+  height: 12em;
+  overflow: scroll;
 }
 #coord-results li {
   cursor: pointer;
